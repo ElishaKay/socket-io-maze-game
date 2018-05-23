@@ -1,0 +1,40 @@
+body {
+	margin-top: 30px;
+}
+
+#messageArea {
+    display: none;
+}
+
+#frame {
+	position: relative;
+	width: 597px;
+	height: 405px;
+	background-image: url(maze.png);
+	background-position: center;
+	background-size: cover; 
+}
+
+#myImg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	margin: auto; 
+}
+
+.dot {
+  	height: 25px;
+  	width: 25px;
+  	background-color: #bbb;
+  	border-radius: 50%;
+ }
+
+.newdot {
+  	height: 25px;
+  	width: 25px;
+  	background-color: #bbb;
+  	border-radius: 50%;
+}

@@ -8,9 +8,12 @@ connections = [];
 server.listen(process.env.PORT || 3000);
 console.log('server running');
 
+app.use(express.static('public'))
+
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html')
 });
+
 
 io.sockets.on('connection', function(socket){
     connections.push(socket);
@@ -21,12 +24,11 @@ io.sockets.on('connection', function(socket){
         io.sockets.emit('new message', {msg: data, user: socket.username});
     });
 
-    //mouse up
     socket.on('mouse up', function(data){
-        console.log('this is the mouseup data: ',data);
-        io.sockets.emit('send coordinates', {msg: data, user: socket.username});
+        console.log(data);
+        io.sockets.emit('send coordinates', {color: data.color, elementX: data.elementX, elementY: data.elementY});
     });
-    
+
     // new user
     socket.on('new user', function(data, callback){
         callback(true);
