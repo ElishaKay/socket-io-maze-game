@@ -11,14 +11,39 @@
         <style>
 
 
-            img { 
-              z-index: 9;
-              background-size: cover;
+            body {
+                margin-top: 30px;
             }
-
             #messageArea {
                 display: none;
             }
+
+            #frame {
+            position: relative;
+
+            width: 597px;
+            height: 405px;
+
+            background-image: url(https://lh6.googleusercontent.com/k7XLCxBUZAWYwxoHr9c41J-Qf02-J5osgfGduKmihwwCY6RKiZCABSfepUS113PrKBFcvWgcSRbwqNDWgBqd=w1366-h613-rw);
+            background-position: center;
+            background-size: cover; }
+
+            #myImg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+
+            display: block;
+            margin: auto; }
+
+            .dot {
+              height: 25px;
+              width: 25px;
+              background-color: #bbb;
+              border-radius: 50%;
+             }
 
         </style>
 
@@ -28,8 +53,11 @@
     <body>
         <div class="row">
             <div class="col-md-6">
-            <img src="https://lh6.googleusercontent.com/k7XLCxBUZAWYwxoHr9c41J-Qf02-J5osgfGduKmihwwCY6RKiZCABSfepUS113PrKBFcvWgcSRbwqNDWgBqd=w1366-h613-rw">
+            <div id="frame">
+            <span id="myImg" class="dot"></span>
+            </div>
         </div>
+
       <div class="col-md-6">
       <div class= "container">
         <div id="userFormArea" class="row">
