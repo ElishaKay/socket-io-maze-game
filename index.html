@@ -47,21 +47,13 @@
               border-radius: 50%;
              }
 
-             #element {
-                width: 100px;
-                height: 100px;
-                background: skyblue;
-                position: relative;
-            }
+            
         </style>
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-
-        <div id="element"></div>
-
 
         <div class="row">
             <div class="col-md-6">
@@ -171,7 +163,18 @@
                 }
 
                 // mouse button released
-                element.addEventListener('mouseup', onMouseUp);
+                element.addEventListener('mouseup', onMouseUpFunc);
+
+                // element.mouseup() onMouseUpFunc);
+
+                $dot.mouseup(function() {
+                  alert( "Handler for .mouseup() called." );
+                  onMouseUp(event);
+                });
+
+                function onMouseUpFunc(event) {
+                    console.log('mouseup event called');
+                }
 
                 /**
                  * Listens to `mouseup` event.
@@ -179,7 +182,8 @@
                  * @param {Object} event - The event.
                  */
                 function onMouseUp(event) {
-                    isMouseDown = false;
+                    console.log('mouseup event called');
+                    var isMouseDown = false;
                     elementX = parseInt(element.style.left) || 0;
                     elementY = parseInt(element.style.top) || 0;
                 }
@@ -203,7 +207,7 @@
                 }
 }
 
-            draggable(document.getElementById('element'));
+            draggable(document.getElementById('myImg'));
 
             $userForm.submit(function(e){
                 e.preventDefault();
