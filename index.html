@@ -14,6 +14,7 @@
             body {
                 margin-top: 30px;
             }
+
             #messageArea {
                 display: none;
             }
@@ -35,7 +36,8 @@
             right: 0;
             bottom: 0;
 
-            display: block;
+            /*display: block;*/
+            display: none;
             margin: auto; }
 
             .dot {
@@ -110,6 +112,7 @@
             var $userForm = $('#userForm');
             var $users = $('#users');
             var $username = $('#username');
+            var $dot = $('#myImg');
 
             $messageForm.submit(function(e){
                 e.preventDefault();
@@ -128,6 +131,7 @@
                     if(data){
                         $userFormArea.hide();
                         $messageArea.show();
+                        $dot.show();
                     }
                 });
                 $username.val('');
