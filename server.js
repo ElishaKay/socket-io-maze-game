@@ -20,6 +20,12 @@ io.sockets.on('connection', function(socket){
     socket.on('send message', function(data){
         io.sockets.emit('new message', {msg: data, user: socket.username});
     });
+
+    //mouse up
+    socket.on('mouse up', function(data){
+        console.log('this is the mouseup data: ',data);
+        io.sockets.emit('send coordinates', {msg: data, user: socket.username});
+    });
     
     // new user
     socket.on('new user', function(data, callback){

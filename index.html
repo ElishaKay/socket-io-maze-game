@@ -177,6 +177,9 @@
         isMouseDown = false;
         elementX = parseInt(element.style.left) || 0;
         elementY = parseInt(element.style.top) || 0;
+        console.log('this is the x-axis location:',mouseX);
+        console.log('this is the y-axis location:',mouseY);
+        socket.emit('mouse up', {elementX: elementX, elementY: elementY, color:});
     }
 
     // need to attach to the entire document
