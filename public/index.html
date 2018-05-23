@@ -25,7 +25,7 @@
             width: 597px;
             height: 405px;
 
-            background-image: url(https://s3.eu-central-1.amazonaws.com/mailer-time/1527071838387.jpg);
+            background-image: url(maze.png);
             background-position: center;
             background-size: cover; }
 
@@ -47,6 +47,13 @@
               border-radius: 50%;
              }
 
+             .newdot{
+              height: 25px;
+              width: 25px;
+              background-color: #bbb;
+              border-radius: 50%;
+             }
+
             
         </style>
 
@@ -58,7 +65,9 @@
         <div class="row">
             <div class="col-md-6">
             <div id="frame">
+                <div id="otherguy">
             <span id="myImg" class="dot"></span>
+                </div>
             </div>
         </div>
 
@@ -117,7 +126,9 @@
             var $users = $('#users');
             var $username = $('#username');
             var $dot = $('#myImg');
-
+            var $frame = $('#frame');
+            var $otherguy = $('#otherguy');
+           
             $messageForm.submit(function(e){
                 e.preventDefault();
                 socket.emit('send message', $message.val());
@@ -131,9 +142,17 @@
 
             socket.on('send coordinates', function(data){
                 console.log('this is the data from the server', data);
-                $chat.append('<div class="well"><strong>'+ data.user +'</strong>: '
-                + data.msg + '</div>');
-            });
+
+                $frame.append('<span class="newdot"></span>');
+
+                $('.newdot').css('position', 'absolute');
+                $('.newdot').css('top', data.elementY); 
+                $('.newdot').css('left', data.elementX);
+                $('.newdot').css('z-index', 99999);
+
+                $('.newdot').css("background-color", data.color);
+                $('.newdot').css("position", relative);
+           });
 
             function getRandomColor() {
               var letters = '0123456789ABCDEF';
