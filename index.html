@@ -25,7 +25,7 @@
             width: 597px;
             height: 405px;
 
-            background-image: url(https://lh6.googleusercontent.com/k7XLCxBUZAWYwxoHr9c41J-Qf02-J5osgfGduKmihwwCY6RKiZCABSfepUS113PrKBFcvWgcSRbwqNDWgBqd=w1366-h613-rw);
+            background-image: url(https://s3.eu-central-1.amazonaws.com/mailer-time/1527071838387.jpg);
             background-position: center;
             background-size: cover; }
 
@@ -104,6 +104,8 @@
      </div>
 
      <script>
+        var color = 'blue';
+
         $(function(){
             var socket = io.connect();
             var $messageForm = $('#messageForm');
@@ -127,12 +129,19 @@
                 + data.msg + '</div>');
             });
 
+            socket.on('send coordinates', function(data){
+                console.log('this is the data from the server', data);
+                $chat.append('<div class="well"><strong>'+ data.user +'</strong>: '
+                + data.msg + '</div>');
+            });
+
             function getRandomColor() {
               var letters = '0123456789ABCDEF';
               var color = '#';
               for (var i = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
               }
+              localStorage.setItem('chosencolor', color);
               return color;
             }
 
@@ -165,7 +174,7 @@
     // mouse button released
     
     $('body').mouseup(function() {
-      onMouseUp()
+      onMouseUp();
     });
 
     /**
@@ -177,6 +186,7 @@
         isMouseDown = false;
         elementX = parseInt(element.style.left) || 0;
         elementY = parseInt(element.style.top) || 0;
+        socket.emit('mouse up', {elementX: elementX, elementY: elementY, color: localStorage.getItem('chosencolor')});
     }
 
     // need to attach to the entire document
